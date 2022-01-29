@@ -1,0 +1,16 @@
+## Not used at the moment in docker but could be used at the server level
+[Unit]
+Description=uWSGI instance to serve caserver
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/vagrant/caserver/api
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+ExecStart=/usr/local/bin/uwsgi --ini uwsgi.ini
+
+[Install]
+WantedBy=multi-user.target
